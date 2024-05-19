@@ -1,0 +1,35 @@
+using UnityEngine;
+
+namespace Nutbusterz.Calamitus
+{
+    public class PlayerManager : CharacterManager
+    {
+        [HideInInspector] public PlayerCameraManager playerCameraManager;
+        [HideInInspector] public PlayerInputManager playerInputManager;
+        [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
+        [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
+        [HideInInspector] public PlayerCombatManager playerCombatManager;
+        [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            animator = GetComponentInChildren<Animator>();
+            playerCameraManager = GetComponentInChildren<PlayerCameraManager>();
+            playerInputManager = GetComponent<PlayerInputManager>();
+            playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+            playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+            playerCombatManager = GetComponent<PlayerCombatManager>();
+            playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        }
+        public void Update()
+        {
+            animator.SetBool("isGrounded", isGrounded);
+
+            playerInputManager.UseAllInputs();
+            playerLocomotionManager.UseAllMovement();
+            playerCameraManager.UseAllCameraMovement();
+            playerCombatManager.AttemptToWallRun();
+        }
+    }
+}

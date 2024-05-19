@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145a217064355f04e876a43042ded2a5, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  name: Player
+  icon: {fileID: 0}
+  lore: 
+  movementSpeed: 25
+  walkingSpeed: 25
+  sprintingSpeed: 30
+  jumpForce: 5
+  jumpCooldown: 1
+  gravity: -40
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  dashForce: 500
+  dashDuration: 0.15
+  useDashCameraForward: 1
+  allowDashInAllDirections: 1
+  resetDashVelocity: 1
+  wallRunSpeed: 20
+  wallRunForce: 6
+  wallRunMaxTime: 1.5
+  wallRunGravity: -5
+  wallRunDetectionDistance: 1
+  wallRunLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  slideSpeed: 20
+  slideDuration: 1
+  slideHeight: 0.5

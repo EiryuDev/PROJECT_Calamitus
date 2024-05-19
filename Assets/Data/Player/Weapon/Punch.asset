@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: affa111fef2881149b6e9bf28917dacb, type: 3}
+  m_Name: Punch
+  m_EditorClassIdentifier: 
+  name: Punch
+  icon: {fileID: 0}
+  lore: 
+  physicalDamage: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  poiseDamage: 0
+  bonus_Damage_Modifier: 1.1
+  leftAttackAnimation: Punch Left
+  rightAttackAnimation: Punch Right
+  whooshes:
+  - {fileID: 8300000, guid: f162afc5664887e40b2e616cb277b538, type: 3}

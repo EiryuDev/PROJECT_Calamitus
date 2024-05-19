@@ -1,0 +1,15 @@
+using UnityEngine;
+
+namespace Nutbusterz.Calamitus
+{
+    public class WRLD_PROJECTILE_MANAGER : MonoBehaviour
+    {
+        [Header("PROJECTILE DATA")]
+        public WRLD_PROJECTILE_WEAPON_ITEM currentProjectileItemBeingUsed;
+
+        private void Start()
+        {
+            Destroy(gameObject, currentProjectileItemBeingUsed.destroyAfterTime);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f518f9fc40fefbe45a7a412a4f403b58, type: 3}
+  m_Name: Player Skill Level
+  m_EditorClassIdentifier: 
+  name: 
+  icon: {fileID: 0}
+  lore: 
+  breathingSkillLevel: 1
+  lookingSkillLevel: 1
+  walkingSkillLevel: 1
+  sprintingSkillLevel: 1
+  jumpingSkillLevel: 1
+  fallingSkillLevel: 1
+  landingSkillLevel: 1
+  dashingSkillLevel: 1
+  wallRunningSkillLevel: 1
+  wallJumpingSkillLevel: 1
+  slidingSkillLevel: 1
+  punchingSkillLevel: 1
