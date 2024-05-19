@@ -8,3 +8,8 @@ public enum AITypes
 {
     Floating
 }
+public enum AIState
+{
+    Attack,
+    Patrol
+}

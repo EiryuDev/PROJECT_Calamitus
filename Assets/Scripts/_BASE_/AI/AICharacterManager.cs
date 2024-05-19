@@ -2,14 +2,17 @@ using UnityEngine;
 
 namespace Nutbusterz.Calamitus
 {
+
     public class AICharacterManager : CharacterManager
     {
         [HideInInspector] public Transform player;  // Reference to the player's transform
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager; 
         [HideInInspector] public AICharacterInventoryManager aiCharacterInventoryManager;
+        private AIState currentState = AIState.Patrol;
         protected override void Awake()
         {
+            base.Awake();   
             player = FindFirstObjectByType<PlayerManager>().transform;
             aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
             aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
@@ -21,15 +24,25 @@ namespace Nutbusterz.Calamitus
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+                // Update state based on distance to player
                 if (distanceToPlayer <= aiCharacterInventoryManager.currentAIDataBeingUsed.aiAttackRange)
                 {
-                    // Player is in range, engage combat
-                    aiCharacterCombatManager.AttemptToAttack(Camera.main.transform);
+                    currentState = AIState.Attack;
                 }
                 else
                 {
-                    // Patrol
-                    aiCharacterLocomotionManager.AttemptToPatrol();
+                    currentState = AIState.Patrol;
+                }
+
+                // Perform actions based on the current state
+                switch (currentState)
+                {
+                    case AIState.Attack:
+                        UseAttack();
+                        break;
+                    case AIState.Patrol:
+                        UsePatrol();
+                        break;
                 }
 
                 // Make the object look at the player
@@ -37,6 +50,16 @@ namespace Nutbusterz.Calamitus
                 lookDirection.y = 0;
                 transform.rotation = Quaternion.LookRotation(lookDirection);
             }
+        }
+
+        void UseAttack()
+        {
+            aiCharacterCombatManager.AttemptToAttack(Camera.main.transform);
+        }
+
+        void UsePatrol()
+        {
+            aiCharacterLocomotionManager.AttemptToPatrol();
         }
     }
 }

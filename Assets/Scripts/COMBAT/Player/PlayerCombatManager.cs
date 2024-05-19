@@ -9,8 +9,9 @@ namespace Nutbusterz.Calamitus
         [Header("REFERENCES")]
         public Transform orientation;
         public Transform playerCam;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             player = GetComponent<PlayerManager>();
         }
         public void AttemptToWallRun()
@@ -47,7 +48,7 @@ namespace Nutbusterz.Calamitus
                 }
                 else
                 {
-                    player.controller.Move(player.playerLocomotionManager.wallNormal * player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunForce * Time.deltaTime);
+                    player.playerController.Move(player.playerLocomotionManager.wallNormal * player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunForce * Time.deltaTime);
                     player.playerLocomotionManager.velocity.y = player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunGravity * Time.deltaTime;
                 }
             }
@@ -64,7 +65,7 @@ namespace Nutbusterz.Calamitus
 
         private bool DetectWallRunCollision(out RaycastHit hit)
         {
-            Vector3 origin = transform.position + new Vector3(0, player.controller.height / 2, 0);
+            Vector3 origin = transform.position + new Vector3(0, player.playerController.height / 2, 0);
             Vector3 direction = player.transform.right;
             float distance = player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunDetectionDistance;
 
@@ -80,12 +81,12 @@ namespace Nutbusterz.Calamitus
         {
             player.isSliding = true;
             player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.slideDuration;
-            player.controller.height = player.playerInventoryManager.currentPlayerDataBeingUsed.slideHeight;
+            player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.slideHeight;
         }
         public void ResetSliding()
         {
             player.isSliding = false;
-            player.controller.height = player.playerLocomotionManager.originalHeight;
+            player.playerController.height = player.playerLocomotionManager.originalHeight;
         }
 
         public void AttemptToUseLeftAttack()

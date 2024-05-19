@@ -23,7 +23,10 @@ namespace Nutbusterz.Calamitus
         {
             base.Awake();
             player = GetComponent<PlayerManager>();
-            originalHeight = player.controller.height;
+        }
+        private void Start()
+        {
+            originalHeight = player.playerController.height;
         }
         public void UseAllMovement()
         {
@@ -54,7 +57,7 @@ namespace Nutbusterz.Calamitus
                 player.playerInventoryManager.currentPlayerDataBeingUsed.walkingSpeed;
             Vector3 moveDirection = CalculateMoveDirection();
 
-            player.controller.Move(moveDirection * speed * Time.deltaTime);
+            player.playerController.Move(moveDirection * speed * Time.deltaTime);
 
             if (player.isSprinting)
             {
@@ -106,10 +109,10 @@ namespace Nutbusterz.Calamitus
             }
 
             velocity.y += player.playerInventoryManager.currentPlayerDataBeingUsed.gravity * Time.deltaTime;
-            character.controller.Move(velocity * Time.deltaTime);
+            player.playerController.Move(velocity * Time.deltaTime);
 
             // Reset the Y velocity and forward velocity after the movement is applied
-            if (character.controller.isGrounded)
+            if (player.playerController.isGrounded)
             {
                 velocity.y = 0f;
                 // Reset the forward velocity
@@ -129,7 +132,7 @@ namespace Nutbusterz.Calamitus
                 else
                 {
                     Vector3 moveDirection = CalculateMoveDirection();
-                    player.controller.Move(moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.slideSpeed * Time.deltaTime);
+                    player.playerController.Move(moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.slideSpeed * Time.deltaTime);
                 }
             }
         }
@@ -154,7 +157,7 @@ namespace Nutbusterz.Calamitus
             while (elapsedTime < player.playerInventoryManager.currentPlayerDataBeingUsed.dashDuration)
             {
                 elapsedTime += Time.deltaTime;
-                player.controller.Move(velocity * Time.deltaTime);
+                player.playerController.Move(velocity * Time.deltaTime);
                 yield return null;
             }
         }

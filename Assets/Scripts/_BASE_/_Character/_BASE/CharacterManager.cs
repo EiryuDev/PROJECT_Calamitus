@@ -7,7 +7,6 @@ namespace Nutbusterz.Calamitus
         [HideInInspector] public Animator animator;
         [HideInInspector] public Rigidbody rigidBody;
         [HideInInspector] public AudioSource audioSource;
-        [HideInInspector] public CharacterController controller;
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
         [HideInInspector] public CharacterCombatManager characterCombatManager;
@@ -27,7 +26,6 @@ namespace Nutbusterz.Calamitus
         {
             rigidBody = GetComponent<Rigidbody>();
             audioSource = GetComponent<AudioSource>();
-            controller = GetComponent<CharacterController>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
             characterCombatManager = GetComponent<CharacterCombatManager>();

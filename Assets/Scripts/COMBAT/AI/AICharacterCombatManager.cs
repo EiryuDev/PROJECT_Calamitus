@@ -1,18 +1,17 @@
 using Nutbusterz.Calamitus;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class AICharacterCombatManager : MonoBehaviour
+public class AICharacterCombatManager : CharacterCombatManager
 {
     [HideInInspector] public AICharacterManager aiCharacter;
 
     [Header("ATTACK DATA")]
     public GameObject bulletPrefab; // 2D bullet prefab
     public Transform firePoint; // Point from where the bullet will be fired
-    public float bulletSpeed = 20f; // Speed of the bullet
     private float nextFireTime = 0f;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         aiCharacter = GetComponent<AICharacterManager>();
     }
 

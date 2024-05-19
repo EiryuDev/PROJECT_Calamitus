@@ -9,17 +9,6 @@ namespace Nutbusterz.Calamitus
 
         int horizontal; // For horizontal value
         int vertical; // For vertical value
-
-        [Header("DAMAGE ANIMATION")]
-        [HideInInspector] public string Damage_Forward_Small_01 = "Damage_Forward_Small_01";
-        [HideInInspector] public string Damage_Back_Small_01 = "Damage_Back_Small_01";
-        [HideInInspector] public string Damage_Left_Small_01 = "Damage_Left_Small_01";
-        [HideInInspector] public string Damage_Right_Small_01 = "Damage_Right_Small_01";
-
-        [HideInInspector] public List<string> Damage_Animations_Small_Forward = new List<string>();
-        [HideInInspector] public List<string> Damage_Animations_Small_Backward = new List<string>();
-        [HideInInspector] public List<string> Damage_Animations_Small_Left = new List<string>();
-        [HideInInspector] public List<string> Damage_Animations_Small_Right = new List<string>();
         
         protected virtual void Awake()
         {
@@ -28,33 +17,12 @@ namespace Nutbusterz.Calamitus
             horizontal = Animator.StringToHash("Horizontal");
             vertical = Animator.StringToHash("Vertical");
         }
-        protected virtual void Start()
-        {
-            Damage_Animations_Small_Forward.Add(Damage_Forward_Small_01);
-            //Damage_Animations_Small_Forward.Add(Damage_Forward_Small_02); //If you have variations of Damage Animation do like thid
-            Damage_Animations_Small_Backward.Add(Damage_Back_Small_01);
-            Damage_Animations_Small_Left.Add(Damage_Left_Small_01);
-            Damage_Animations_Small_Right.Add(Damage_Right_Small_01);
-        }
         public string GetRandomDamageAnimationFromList(List<string> animationList)
         {
             int randomValue = Random.Range(0, animationList.Count);
 
             return animationList[randomValue];
             //if (animationList[randomValue] == lastDamageAnimationPlayed) //If you don't want same animation to played you can use this method
-        }
-        public virtual void OnAnimatorMove()
-        {
-            if (character.isPerformingAction == false)
-                return;
-
-            if (character.applyRootMotion)
-            {
-                // BELOW CODE: Take the rotation from particular animation and apply to the character rotation
-                Vector3 velocity = character.animator.deltaPosition;
-                character.controller.Move(velocity);
-                character.transform.rotation *= character.animator.deltaRotation;
-            }
         }
         public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
         {
@@ -143,14 +111,6 @@ namespace Nutbusterz.Calamitus
         {
             character.canMove = true;
         }
-        public virtual void EnableCombo()
-        {
-            character.animator.SetBool("canDoCombo", true);
-        }
-        public virtual void DisableCombo()
-        {
-            character.animator.SetBool("canDoCombo", false);
-        }
         public void EnableIsInvulnerable()
         {
             character.animator.SetBool("isInvulnerable", true);
@@ -159,13 +119,13 @@ namespace Nutbusterz.Calamitus
         {
             character.animator.SetBool("isInvulnerable", false);
         }
-        public void DisableCollision()
+        protected virtual void DisableCollision()
         {
-            character.controller.enabled = false;
+
         }
-        public void EnableCollision()
+        protected virtual void EnableCollision()
         {
-            character.controller.enabled = true;
+
         }
     }
 }

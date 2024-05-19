@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace Nutbusterz.Calamitus
 {
-    public class AICharacterLocomotionManager : MonoBehaviour
+    public class AICharacterLocomotionManager : CharacterLocomotionManager
     {
         [HideInInspector] public AICharacterManager aiCharacter;
 
         [Header("MOVEMENT DATA")]
         private Vector3 startingPos;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             aiCharacter = GetComponent<AICharacterManager>();
         }
         private void Start()

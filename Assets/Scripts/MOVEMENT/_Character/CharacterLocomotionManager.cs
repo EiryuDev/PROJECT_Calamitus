@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.TextCore.Text;
 
 namespace Nutbusterz.Calamitus
 {

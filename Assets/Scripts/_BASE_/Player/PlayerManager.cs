@@ -4,6 +4,7 @@ namespace Nutbusterz.Calamitus
 {
     public class PlayerManager : CharacterManager
     {
+        [HideInInspector] public CharacterController playerController;
         [HideInInspector] public PlayerCameraManager playerCameraManager;
         [HideInInspector] public PlayerInputManager playerInputManager;
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
@@ -15,6 +16,7 @@ namespace Nutbusterz.Calamitus
         {
             base.Awake();
             animator = GetComponentInChildren<Animator>();
+            playerController = GetComponent<CharacterController>();
             playerCameraManager = GetComponentInChildren<PlayerCameraManager>();
             playerInputManager = GetComponent<PlayerInputManager>();
             playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
