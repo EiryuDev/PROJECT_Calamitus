@@ -22,6 +22,8 @@ namespace Nutbusterz.Calamitus
         public float aiStoppingDistance = 2.0f;
 
         [Header("COMBAT DATA")]
+        [Tooltip("How much is the damage of ai attack")]
+        public int aiDamage = 1;
         [Tooltip("How much is the range for ai detection")]
         public float aiDetectionRange = 5f;
         [Tooltip("How much is the range for ai attack")]

@@ -11,6 +11,7 @@ namespace Nutbusterz.Calamitus
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager; 
         [HideInInspector] public AICharacterInventoryManager aiCharacterInventoryManager;
         [HideInInspector] public AICharacterAnimatorManager aiCharacterAnimatorManager;
+        [HideInInspector] public AICharacterStatsManager aiCharacterStatsManager;
         private AIState currentState = AIState.Patrol;
 
         protected override void Awake()
@@ -22,6 +23,7 @@ namespace Nutbusterz.Calamitus
             aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
             aiCharacterInventoryManager = GetComponent<AICharacterInventoryManager>();  
             aiCharacterAnimatorManager = GetComponent<AICharacterAnimatorManager>();
+            aiCharacterStatsManager = GetComponent<AICharacterStatsManager>();
         }
         void Update()
         {
@@ -96,10 +98,10 @@ namespace Nutbusterz.Calamitus
                     animator.SetFloat("Speed", 0f);
                     break;
                 case AIState.Chase:
-                    animator.SetFloat("Speed", 1f);
+                    animator.SetFloat("Speed", 0.5f);
                     break;
                 case AIState.Attack:
-                    animator.SetFloat("Speed", 0f);
+                    animator.SetFloat("Speed", 1f);
                     break;
             }
         }

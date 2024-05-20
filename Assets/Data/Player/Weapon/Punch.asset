@@ -15,12 +15,13 @@ MonoBehaviour:
   name: Punch
   icon: {fileID: 0}
   lore: 
-  physicalDamage: 0
+  physicalDamage: 25
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0
   poiseDamage: 0
   bonus_Damage_Modifier: 1.1
+  baseStaminaCost: 5
   leftAttackAnimation: Punch Left
   rightAttackAnimation: Punch Right
   whooshes:

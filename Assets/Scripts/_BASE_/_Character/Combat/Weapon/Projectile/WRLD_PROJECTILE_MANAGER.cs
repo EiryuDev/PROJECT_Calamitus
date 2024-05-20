@@ -17,12 +17,15 @@ namespace Nutbusterz.Calamitus
             if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 Debug.Log("Hit Enemy");
+                AICharacterManager aiCharacter = collision.gameObject.GetComponentInParent<AICharacterManager>();
+                aiCharacter.aiCharacterStatsManager.TakeDamage(currentProjectileItemBeingUsed.projectileDamage);
                 Destroy(gameObject);
             }
             else if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
                 player.playerStatsManager.TakeDamage(currentProjectileItemBeingUsed.projectileDamage);
+                Destroy(gameObject);
             }
         }
     }

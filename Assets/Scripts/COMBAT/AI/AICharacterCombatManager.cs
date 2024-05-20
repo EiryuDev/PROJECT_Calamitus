@@ -53,6 +53,8 @@ public class AICharacterCombatManager : CharacterCombatManager
 
     private void AttemptToHitPlayer(Transform target)
     {
-
+        Debug.Log("Attacking Player");
+        PlayerManager player = FindFirstObjectByType<PlayerManager>();
+        player.playerStatsManager.TakeDamage(aiCharacter.aiCharacterInventoryManager.currentAIDataBeingUsed.aiDamage);
     }
 }

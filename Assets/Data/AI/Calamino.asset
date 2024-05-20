@@ -20,6 +20,7 @@ MonoBehaviour:
   movementSpeed: 10
   aiHeight: 2
   aiStoppingDistance: 9
+  aiDamage: 5
   aiDetectionRange: 20
   aiAttackRange: 4
   aiAttackTime: 1.25

@@ -10,7 +10,6 @@ namespace Nutbusterz.Calamitus
         public int currentHealth = 100;
         public int maxHealth = 100;
 
-
         [Header("STAMINA DATA")]
         public float maxStamina; // Max stamina of the player
         public float currentStamina; // Current stamina of the player
