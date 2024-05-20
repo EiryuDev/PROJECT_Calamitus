@@ -46,12 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  audioSourceEnableCondition: 0
+  audioSourceEnableCondition: 1
   bulletHitPlayerDamageSFX: {fileID: 8300000, guid: 4da25ce5e20e75d42bd39daafa4b69c2,
     type: 3}
   calaminoHitPlayerDamageSFX: {fileID: 8300000, guid: 16601f578fe51ca46b62041dcc7827b1,
     type: 3}
   enemyDamageSFX: {fileID: 8300000, guid: a931614af669b9341ac465072db61bdc, type: 3}
+  shootingBulletSFX: {fileID: 8300000, guid: d10ad94f91bbb83418cdaf014ffe23b2, type: 3}
 --- !u!82 &5643498649468176970
 AudioSource:
   m_ObjectHideFlags: 0

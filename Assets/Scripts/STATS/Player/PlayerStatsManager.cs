@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Nutbusterz.Calamitus
 {
@@ -31,6 +32,11 @@ namespace Nutbusterz.Calamitus
         {
             currentHealth -= damageAmount;
             player.playerUIManager.healthBar.SetCurrentHealth(currentHealth);
+
+            if(currentHealth <= 0)
+            {
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            }
         }
         public void DeductStamina(float staminaToDeduct)
         {

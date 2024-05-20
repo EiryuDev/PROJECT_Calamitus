@@ -17,10 +17,10 @@ MonoBehaviour:
   lore: 
   aiTypes: 1
   weaponModel: {fileID: 0}
-  movementSpeed: 25
+  movementSpeed: 60
   aiHeight: 2
   aiStoppingDistance: 9
   aiDamage: 5
-  aiDetectionRange: 20
+  aiDetectionRange: 40
   aiAttackRange: 4
   aiAttackTime: 1.25

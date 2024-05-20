@@ -15,10 +15,10 @@ MonoBehaviour:
   name: Player
   icon: {fileID: 0}
   lore: 
-  baseWalkingSpeed: 15
-  runtimeWalkingSpeed: 17.5
-  baseJumpForce: 3
-  runtimeJumpForce: 3
+  baseWalkingSpeed: 18
+  runtimeWalkingSpeed: 18
+  baseJumpForce: 2
+  runtimeJumpForce: 2
   baseJumpCooldown: 1
   runtimeJumpCooldown: 1
   gravity: -40

@@ -17,7 +17,7 @@ PlayerSettings:
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
-  m_ShowUnitySplashScreen: 1
+  m_ShowUnitySplashScreen: 0
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
@@ -162,7 +162,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.Nutbusterz.Calamitus
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -870,11 +871,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: b739c0e9-a309-4c3a-9e1c-9962bc0ee6be
+  cloudProjectId: 37dc6470-8601-408b-8b02-97576c0dc7fa
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: itsatest
-  organizationId: elastic-sea
+  projectName: Calamitus
+  organizationId: adnan-yousuf-games
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
