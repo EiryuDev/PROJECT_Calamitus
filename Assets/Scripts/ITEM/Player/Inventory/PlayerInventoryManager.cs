@@ -10,7 +10,7 @@ namespace Nutbusterz.Calamitus
         public WRLD_PLAYER_ITEM currentPlayerDataBeingUsed;
 
         [Header("WEAPON DATA")]
-        public WRLD_WEAPON_ITEM currentWeaponDataBeingUsed;
+        public WRLD_MELEE_WEAPON_ITEM currentWeaponDataBeingUsed;
 
         [Header("SKILL DATA")]
         public WRLD_SKILL_ITEM currentSkillDataBeingUsed;

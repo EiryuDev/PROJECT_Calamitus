@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: affa111fef2881149b6e9bf28917dacb, type: 3}
+  m_Script: {fileID: 11500000, guid: 37f25aace5c4906408714ec4ebe12f5c, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
   name: Punch
@@ -22,6 +22,8 @@ MonoBehaviour:
   poiseDamage: 0
   bonus_Damage_Modifier: 1.1
   baseStaminaCost: 5
+  meleeRayCastDistance: 2
+  meleeRayCastRadius: 0.1
   leftAttackAnimation: Punch Left
   rightAttackAnimation: Punch Right
   whooshes:

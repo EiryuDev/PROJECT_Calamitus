@@ -31,15 +31,5 @@ namespace Nutbusterz.Calamitus
         [Header("STAMINA DATA")]
         [Tooltip("Base stamina cost for the weapon")]
         public float baseStaminaCost = 5f;
-
-        [Header("ATTACK ANIMATION DATA")]
-        [Tooltip("For the left hand attack animation")]
-        public string leftAttackAnimation = "Punch Left";
-        [Tooltip("For the right hand attack animation")]
-        public string rightAttackAnimation = "Punch Right";
-
-        [Header("WEAPON WHOOSHES")]
-        [Tooltip("List of audio clip containing weapon whooshes.")]
-        public AudioClip[] whooshes; 
     }
 }

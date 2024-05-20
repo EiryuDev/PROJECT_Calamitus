@@ -72,6 +72,10 @@ namespace Nutbusterz.Calamitus
         public float baseSlideHeight = 0.5f;
         [HideInInspector] public float runtimeSlideHeight = 0.5f;
 
+        [Header("PUNCHING DATA")]
+        public float basePunchingForce = 500f;
+        [HideInInspector] public float runtimePunchingForce = 500f;
+
         [Header("STATS DATA")]
         public float movementStaminaCost = 1f;
         public float jumpingStaminaCost = 5f;
@@ -98,6 +102,8 @@ namespace Nutbusterz.Calamitus
             runtimeSlideSpeed = baseSlideSpeed;
             runtimeSlideDuration = baseSlideDuration;
             runtimeSlideHeight = baseSlideHeight;
+
+            runtimePunchingForce = basePunchingForce;
         }
     }
 }

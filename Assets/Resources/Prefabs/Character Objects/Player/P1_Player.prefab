@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4164280692979419695}
   - component: {fileID: 2334479221881842864}
   - component: {fileID: 4113381148147761251}
+  - component: {fileID: 6392085183525496671}
   m_Layer: 10
   m_Name: Right Hand Damage Hitbox
   m_TagString: Untagged
@@ -123,6 +124,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   deflectionMultiplier: 1.5
+--- !u!54 &6392085183525496671
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832877588156969861}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &950208684046694845
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +164,7 @@ GameObject:
   - component: {fileID: 3697797963564321730}
   - component: {fileID: 6050872870296187839}
   - component: {fileID: 3844827192920549508}
+  - component: {fileID: 4630396028181712583}
   m_Layer: 10
   m_Name: Left Hand Damage Hitbox
   m_TagString: Untagged
@@ -246,6 +275,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   deflectionMultiplier: 1.5
+--- !u!54 &4630396028181712583
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950208684046694845}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1090142005447085852
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +553,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16183
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 78e2ecfe75bfc10479904696cbce6420, type: 2}
   m_TargetDisplay: 0
@@ -1013,7 +1069,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currentPlayerDataBeingUsed: {fileID: 11400000, guid: e6ae6689292517a44b2db88852fdf7c1,
     type: 2}
-  currentWeaponDataBeingUsed: {fileID: 11400000, guid: 6a2beb394efc31444a914e5272208ecc,
+  currentWeaponDataBeingUsed: {fileID: 11400000, guid: 6f476c6e03a814b4e87b49a981172f36,
     type: 2}
   currentSkillDataBeingUsed: {fileID: 11400000, guid: 27a064bbb2abb8f458256acf764cb879,
     type: 2}

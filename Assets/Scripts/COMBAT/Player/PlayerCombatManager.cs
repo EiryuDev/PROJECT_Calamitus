@@ -100,6 +100,7 @@ namespace Nutbusterz.Calamitus
         {
             if(player.playerStatsManager.currentStamina >= 0f)
             {
+                FireBullet(leftHandHitbox.transform);
                 player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentWeaponDataBeingUsed.baseStaminaCost);
                 leftHandHitbox.SetActive(true);
                 player.playerLocomotionManager.stationaryTime = 0f;
@@ -112,6 +113,7 @@ namespace Nutbusterz.Calamitus
         {
             if(player.playerStatsManager.currentStamina >= 0f)
             {
+                FireBullet(rightHandHitbox.transform);
                 player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentWeaponDataBeingUsed.baseStaminaCost);
                 rightHandHitbox.SetActive(true);
                 player.playerLocomotionManager.stationaryTime = 0f;
@@ -119,6 +121,41 @@ namespace Nutbusterz.Calamitus
                 player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
                 player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.rightAttackAnimation, false, false, true);
             }
+        }
+        private void FireBullet(Transform barrelEnd)
+        {
+            var bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            bullet.transform.position = barrelEnd.position;
+            bullet.transform.localScale = Vector3.one * Radius;
+
+            var mat = bullet.GetComponent<Renderer>().material;
+            mat.color = Color.red;
+            mat.EnableKeyword("_EMISSION");
+            mat.SetColor("_EmissionColor", Color.white);
+
+            var rb = bullet.AddComponent<Rigidbody>();
+            rb.linearVelocity = transform.forward * Velocity;
+            rb.mass = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimePunchingForce;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
+            Destroy(bullet, 5);
+        }
+        public float Radius
+        {
+            get => player.playerInventoryManager.currentWeaponDataBeingUsed.meleeRayCastRadius;
+            set => player.playerInventoryManager.currentWeaponDataBeingUsed.meleeRayCastRadius = value;
+        }
+
+        public float Velocity
+        {
+            get => player.playerInventoryManager.currentWeaponDataBeingUsed.meleeRayCastDistance;
+            set => player.playerInventoryManager.currentWeaponDataBeingUsed.meleeRayCastDistance = value;
+        }
+
+        public float Mass
+        {
+            get { return player.playerInventoryManager.currentPlayerDataBeingUsed.runtimePunchingForce; }
+            set { player.playerInventoryManager.currentPlayerDataBeingUsed.runtimePunchingForce = value; }
         }
 
         //public void AttemptToUseDashing()
