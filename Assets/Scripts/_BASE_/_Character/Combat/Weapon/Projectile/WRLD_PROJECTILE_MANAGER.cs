@@ -11,5 +11,14 @@ namespace Nutbusterz.Calamitus
         {
             Destroy(gameObject, currentProjectileItemBeingUsed.destroyAfterTime);
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Debug.Log("Hit Enemy");
+                Destroy(gameObject);
+            }
+        }
     }
 }

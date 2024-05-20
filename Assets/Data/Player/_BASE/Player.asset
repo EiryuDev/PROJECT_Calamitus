@@ -15,29 +15,44 @@ MonoBehaviour:
   name: Player
   icon: {fileID: 0}
   lore: 
-  movementSpeed: 25
-  walkingSpeed: 25
-  sprintingSpeed: 30
-  jumpForce: 5
-  jumpCooldown: 1
+  baseMovementSpeed: 25
+  runtimeMovementSpeed: 3
+  baseWalkingSpeed: 25
+  runtimeWalkingSpeed: 3
+  baseSprintingSpeed: 30
+  runtimeSprintingSpeed: 3
+  baseJumpForce: 5
+  runtimeJumpForce: 10
+  baseJumpCooldown: 1
+  runtimeJumpCooldown: 0.2
   gravity: -40
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  dashForce: 500
-  dashDuration: 0.15
+  baseDashForce: 500
+  runtimeDashForce: 20
+  baseDashDuration: 0.15
+  runtimeDashDuration: 5
   useDashCameraForward: 1
   allowDashInAllDirections: 1
   resetDashVelocity: 1
-  wallRunSpeed: 20
-  wallRunForce: 6
-  wallRunMaxTime: 1.5
-  wallRunGravity: -5
-  wallRunDetectionDistance: 1
+  baseWallRunSpeed: 20
+  runtimeWallRunSpeed: 5
+  baseWallRunForce: 6
+  runtimeWallRunForce: 5
+  baseWallRunMaxTime: 1.5
+  runtimeWallRunMaxTime: 1
+  baseWallRunGravity: -5
+  runtimeWallRunGravity: -5
+  baseWallRunDetectionDistance: 1
+  runtimeWallRunDetectionDistance: 1
   wallRunLayerMask:
     serializedVersion: 2
-    m_Bits: 128
-  slideSpeed: 20
-  slideDuration: 1
-  slideHeight: 0.5
+    m_Bits: 4096
+  baseSlideSpeed: 20
+  runtimeSlideSpeed: 10
+  baseSlideDuration: 1
+  runtimeSlideDuration: 1
+  baseSlideHeight: 0.5
+  runtimeSlideHeight: 0.5

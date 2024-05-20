@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 namespace Nutbusterz.Calamitus
 {
@@ -11,6 +12,8 @@ namespace Nutbusterz.Calamitus
 
         [Header("MOVEMENT DATA")]
         public Transform groundCheck;
+        private Vector3 lastPosition;
+        private float totalDistanceCovered;
         [HideInInspector] public Vector3 velocity;
         [Header("Wall Running Data")]
         [HideInInspector] public float wallRunTimer;
@@ -18,6 +21,16 @@ namespace Nutbusterz.Calamitus
         [Header("Sliding Data")]
         [HideInInspector] public float originalHeight;
         [HideInInspector] public float slideTimer;
+
+        [Header("SKILL DATA")]
+        [Header("BREATHING DATA")]
+        public float currentTimeToLevelUpBreathing = 300f;
+        [HideInInspector] public float stationaryTime = 0f;
+        [Header("LOOKING DATA")]
+        public float currentLookingTimeToLevelUp = 60f;
+        private float totalLookingTime;
+        [Header("WALKING DATA")]
+        public float currentDistanceToLevelUp = 100f;
 
         protected override void Awake()
         {
@@ -30,6 +43,10 @@ namespace Nutbusterz.Calamitus
         }
         public void UseAllMovement()
         {
+            UseTrackLookingTime();
+            UseTrackBreathingSkill();
+            UseTrackDistance();
+
             // BELOW CODE: Grounded movement
             UseGroundedMovement();
             // BELOW CODE: Jumping movement
@@ -52,9 +69,9 @@ namespace Nutbusterz.Calamitus
         }
         private void MovePlayer()
         {
-            float speed = player.isSprinting ? player.playerInventoryManager.currentPlayerDataBeingUsed.sprintingSpeed :
-                player.playerInputManager.moveAmount > 0.5f ? player.playerInventoryManager.currentPlayerDataBeingUsed.movementSpeed :
-                player.playerInventoryManager.currentPlayerDataBeingUsed.walkingSpeed;
+            float speed = player.isSprinting ? player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWalkingSpeed :
+                player.playerInputManager.moveAmount > 0.5f ? player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWalkingSpeed :
+                player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWalkingSpeed;
             Vector3 moveDirection = CalculateMoveDirection();
 
             player.playerController.Move(moveDirection * speed * Time.deltaTime);
@@ -83,10 +100,10 @@ namespace Nutbusterz.Calamitus
                 Vector3 moveDirection = CalculateMoveDirection();
 
                 // Add the forward movement direction to the velocity
-                velocity = moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.movementSpeed;
+                velocity = moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWalkingSpeed;
 
                 // Add the jump force to the Y velocity
-                velocity.y = Mathf.Sqrt(player.playerInventoryManager.currentPlayerDataBeingUsed.jumpForce * -2f * player.playerInventoryManager.currentPlayerDataBeingUsed.gravity);
+                velocity.y = Mathf.Sqrt(player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeJumpForce * -2f * player.playerInventoryManager.currentPlayerDataBeingUsed.gravity);
 
                 // Start the jump cooldown
                 StartCoroutine(JumpCooldown());
@@ -95,7 +112,7 @@ namespace Nutbusterz.Calamitus
         private IEnumerator JumpCooldown()
         {
             player.canJump = false;
-            yield return new WaitForSeconds(player.playerInventoryManager.currentPlayerDataBeingUsed.jumpCooldown);
+            yield return new WaitForSeconds(player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeJumpCooldown);
             player.canJump = true;
         }
 
@@ -132,7 +149,7 @@ namespace Nutbusterz.Calamitus
                 else
                 {
                     Vector3 moveDirection = CalculateMoveDirection();
-                    player.playerController.Move(moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.slideSpeed * Time.deltaTime);
+                    player.playerController.Move(moveDirection * player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideSpeed * Time.deltaTime);
                 }
             }
         }
@@ -142,7 +159,7 @@ namespace Nutbusterz.Calamitus
             Vector3 dashDirection = CalculateMoveDirection();
 
             // Multiply the dashDirection by dashForce
-            dashDirection *= player.playerInventoryManager.currentPlayerDataBeingUsed.dashForce;
+            dashDirection *= player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeDashForce;
 
             // Add the dashDirection to the velocity
             velocity += dashDirection;
@@ -154,13 +171,90 @@ namespace Nutbusterz.Calamitus
         private IEnumerator PerformDash()
         {
             float elapsedTime = 0f;
-            while (elapsedTime < player.playerInventoryManager.currentPlayerDataBeingUsed.dashDuration)
+            while (elapsedTime < player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeDashDuration)
             {
                 elapsedTime += Time.deltaTime;
                 player.playerController.Move(velocity * Time.deltaTime);
                 yield return null;
             }
         }
+        private void UseTrackBreathingSkill()
+        {
+            if (player.playerInputManager.moveAmount == 0)
+            {
+                stationaryTime += Time.deltaTime;
 
+                if (stationaryTime >= currentTimeToLevelUpBreathing)
+                {
+                    LevelUpBreathingSkill();
+                    stationaryTime = 0f; // Reset the timer after leveling up
+                }
+            }
+            else
+            {
+                stationaryTime = 0f; // Reset the timer if the player starts moving
+            }
+        }
+        private void UseTrackLookingTime()
+        {
+            totalLookingTime += Time.deltaTime;
+
+            // Check if enough time has been spent to level up
+            if (totalLookingTime >= currentLookingTimeToLevelUp)
+            {
+                totalLookingTime = 0;
+                LevelUpLookingSkill();
+            }
+        }
+        private void UseTrackDistance()
+        {
+            // Calculate distance covered since the last frame
+            float distanceCovered = Vector3.Distance(lastPosition, transform.position);
+            totalDistanceCovered += distanceCovered;
+            lastPosition = transform.position;
+
+            // Check if enough distance has been covered to level up
+            if (totalDistanceCovered >= currentDistanceToLevelUp)
+            {
+                totalDistanceCovered = 0;
+                LevelUpWalkingSkill();
+            }
+        }
+
+        private void LevelUpBreathingSkill()
+        {
+            WRLD_SKILL_ITEM skillItem = player.playerInventoryManager.currentSkillDataBeingUsed;
+            skillItem.runtimeBreathingSkillLevel++;
+            currentTimeToLevelUpBreathing += player.playerInventoryManager.currentSkillDataBeingUsed.increaseTimeToLevelUpBreathing;
+            StartCoroutine(ShowLevelUpInfo("BREATHING INCREASE TO " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeBreathingSkillLevel)));
+            Debug.Log("Breathing Skill Leveled up to: " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeBreathingSkillLevel));
+            // You can add additional logic here if you want to increase other stats or provide feedback to the player
+        }
+        private void LevelUpLookingSkill()
+        {
+            WRLD_SKILL_ITEM skillItem = player.playerInventoryManager.currentSkillDataBeingUsed;
+            skillItem.runtimeLookingSkillLevel++;
+            currentLookingTimeToLevelUp += player.playerInventoryManager.currentSkillDataBeingUsed.increaseLookingToLevelUp; // Increase time required to level up for next level
+            StartCoroutine(ShowLevelUpInfo("LOOKING INCREASE TO " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeLookingSkillLevel)));
+            Debug.Log("Looking Skill Leveled up to: " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeLookingSkillLevel));
+        }
+        private void LevelUpWalkingSkill()
+        {
+            WRLD_SKILL_ITEM skillItem = player.playerInventoryManager.currentSkillDataBeingUsed;
+            WRLD_PLAYER_ITEM playerItem = player.playerInventoryManager.currentPlayerDataBeingUsed;
+            skillItem.runtimeWalkingSkillLevel++;
+            playerItem.runtimeWalkingSpeed += player.playerInventoryManager.currentSkillDataBeingUsed.increasingWalkingSpeed;
+            currentDistanceToLevelUp += player.playerInventoryManager.currentSkillDataBeingUsed.increaseWalkingToLevelUp;
+            StartCoroutine(ShowLevelUpInfo("WALKING INCREASE TO " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeWalkingSkillLevel)));
+            Debug.Log("Walking Skill Leveled up to: " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeWalkingSkillLevel));
+        }
+
+        private IEnumerator ShowLevelUpInfo(string info)
+        {
+            Debug.Log("tEST");
+            player.playerUIManager.levelUpInfo.SetActive(true);
+            player.playerUIManager.levelUpInfo.GetComponent<TextMeshProUGUI>().text = info;
+            yield return null;
+        }
     }
 }

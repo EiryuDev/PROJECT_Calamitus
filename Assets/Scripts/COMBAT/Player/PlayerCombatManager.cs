@@ -48,15 +48,15 @@ namespace Nutbusterz.Calamitus
                 }
                 else
                 {
-                    player.playerController.Move(player.playerLocomotionManager.wallNormal * player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunForce * Time.deltaTime);
-                    player.playerLocomotionManager.velocity.y = player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunGravity * Time.deltaTime;
+                    player.playerController.Move(player.playerLocomotionManager.wallNormal * player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWallRunForce * Time.deltaTime);
+                    player.playerLocomotionManager.velocity.y = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWallRunGravity * Time.deltaTime;
                 }
             }
         }
         public void StartWallRun()
         {
             player.isWallRunning = true;
-            player.playerLocomotionManager.wallRunTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunMaxTime;
+            player.playerLocomotionManager.wallRunTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWallRunMaxTime;
         }
         public void ResetWallRun()
         {
@@ -67,7 +67,7 @@ namespace Nutbusterz.Calamitus
         {
             Vector3 origin = transform.position + new Vector3(0, player.playerController.height / 2, 0);
             Vector3 direction = player.transform.right;
-            float distance = player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunDetectionDistance;
+            float distance = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWallRunDetectionDistance;
 
             if (Physics.Raycast(origin, direction, out hit, distance, player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunLayerMask) ||
                 Physics.Raycast(origin, -direction, out hit, distance, player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunLayerMask))
@@ -80,8 +80,8 @@ namespace Nutbusterz.Calamitus
         public void AttemptToUseSliding()
         {
             player.isSliding = true;
-            player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.slideDuration;
-            player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.slideHeight;
+            player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideDuration;
+            player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideHeight;
         }
         public void ResetSliding()
         {
@@ -91,12 +91,16 @@ namespace Nutbusterz.Calamitus
 
         public void AttemptToUseLeftAttack()
         {
+            player.playerLocomotionManager.stationaryTime = 0f;
             WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
+            player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
             player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.leftAttackAnimation, false, false, true);
         }
         public void AttemptToUseRightAttack()
         {
+            player.playerLocomotionManager.stationaryTime = 0f;
             WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
+            player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
             player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.rightAttackAnimation, false, false, true);
         }
 
