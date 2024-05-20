@@ -16,7 +16,7 @@ namespace Nutbusterz.Calamitus
         public UI_StaminaBar staminaBar;
 
         [Header("FLAGS")]
-        private bool isPaused = false;
+        public bool isPaused = false;
 
         [Header("SKILL DATA")]
         public TextMeshProUGUI levelSkillLevel;

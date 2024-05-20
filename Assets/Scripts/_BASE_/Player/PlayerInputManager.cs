@@ -71,12 +71,15 @@ namespace Nutbusterz.Calamitus
         }
         public void UseAllInputs()
         {
-            UseMovementInput();
-            UseJumpInput();
-            UseDashInput();
-            UseSlideInput();
-            UseTapRBInput();
-            UseTapRTInput();
+            if (!player.playerUIManager.isPaused)
+            {
+                UseMovementInput();
+                UseJumpInput();
+                UseDashInput();
+                UseSlideInput();
+                UseTapRBInput();
+                UseTapRTInput();
+            }
         }
 
         public void UseMovementInput()
