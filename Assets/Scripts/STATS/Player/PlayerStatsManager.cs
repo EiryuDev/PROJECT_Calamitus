@@ -24,6 +24,8 @@ namespace Nutbusterz.Calamitus
         {
             player.playerUIManager.healthBar.SetMaxHealth(maxHealth);
             player.playerUIManager.staminaBar.SetMaxStamina(maxStamina);
+            player.playerInventoryManager.currentSkillDataBeingUsed.Refresh();
+            player.playerInventoryManager.currentPlayerDataBeingUsed.Refresh(); 
         }
         public void TakeDamage(int damageAmount)
         {

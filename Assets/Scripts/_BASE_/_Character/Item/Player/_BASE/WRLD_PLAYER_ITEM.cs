@@ -105,5 +105,27 @@ namespace Nutbusterz.Calamitus
 
             runtimePunchingForce = basePunchingForce;
         }
+        public void Refresh()
+        {
+            runtimeWalkingSpeed = baseWalkingSpeed;
+
+            runtimeJumpForce = baseJumpForce;
+            runtimeJumpCooldown = baseJumpCooldown;
+
+            runtimeDashForce = baseDashForce;
+            runtimeDashDuration = baseDashDuration;
+
+            runtimeWallRunSpeed = baseWallRunSpeed;
+            runtimeWallRunForce = baseWallRunForce;
+            runtimeWallRunMaxTime = baseWallRunMaxTime;
+            runtimeWallRunGravity = baseWallRunGravity;
+            runtimeWallRunDetectionDistance = baseWallRunDetectionDistance;
+
+            runtimeSlideSpeed = baseSlideSpeed;
+            runtimeSlideDuration = baseSlideDuration;
+            runtimeSlideHeight = baseSlideHeight;
+
+            runtimePunchingForce = basePunchingForce;
+        }
     }
 }

@@ -85,5 +85,26 @@ namespace Nutbusterz.Calamitus
             runtimePunchingDamageSkillLevel = basePunchingDamageSkillLevel;
             runtimePunchingSpeedSkillLevel=  basePunchingSpeedSkillLevel;
         }
+
+        public void Refresh()
+        {
+            runtimeBreathingSkillLevel = baseBreathingSkillLevel;
+            runtimeLookingSkillLevel = baseLookingSkillLevel;
+            runtimeWalkingSkillLevel = baseWalkingSkillLevel;
+
+            runtimeJumpingSkillLevel = baseJumpingSkillLevel;
+            runtimeFallingSkillLevel = baseFallingSkillLevel;
+            runtimeLandingSkillLevel = baseLandingSkillLevel;
+
+            runtimeDashingSkillLevel = baseDashingSkillLevel;
+
+            runtimeWallRunningSkillLevel = baseWallRunningSkillLevel;
+            runtimeWallJumpingSkillLevel = baseWallJumpingSkillLevel;
+
+            runtimeSlidingSkillLevel = baseSlidingSkillLevel;
+
+            runtimePunchingDamageSkillLevel = basePunchingDamageSkillLevel;
+            runtimePunchingSpeedSkillLevel = basePunchingSpeedSkillLevel;
+        }
     }
 }
