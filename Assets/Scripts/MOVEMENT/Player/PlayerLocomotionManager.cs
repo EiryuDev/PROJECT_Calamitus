@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 namespace Nutbusterz.Calamitus
 {
@@ -32,6 +34,7 @@ namespace Nutbusterz.Calamitus
         [Header("WALKING DATA")]
         public float currentDistanceToLevelUp = 100f;
 
+        private DepthOfField depthOfField;
         protected override void Awake()
         {
             base.Awake();
@@ -40,6 +43,23 @@ namespace Nutbusterz.Calamitus
         private void Start()
         {
             originalHeight = player.playerController.height;
+
+            if (player.globalVolume != null && player.globalVolume.profile != null)
+            {
+                if (!player.globalVolume.profile.TryGet(out depthOfField))
+                {
+                    Debug.LogError("DepthOfField component not found in the Volume profile.");
+                }
+                else
+                {
+                    Debug.Log("DepthOfField component found in the Volume profile.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Global Volume or its profile is not assigned.");
+            }
+
         }
         public void UseAllMovement()
         {
@@ -236,11 +256,25 @@ namespace Nutbusterz.Calamitus
         }
         private void LevelUpLookingSkill()
         {
+            if (depthOfField != null)
+            {
+                Debug.Log($"Current focusDistance value: {depthOfField.focusDistance.value}");
+                Debug.Log($"Current aperture value: {depthOfField.aperture.value}");
+
+                depthOfField.focusDistance.value += player.playerInventoryManager.currentSkillDataBeingUsed.increasingLookDistance;
+                depthOfField.aperture.value += player.playerInventoryManager.currentSkillDataBeingUsed.increasingLookAperture;
+                depthOfField.focusDistance.overrideState = true;
+                depthOfField.aperture.overrideState = true;
+
+                Debug.Log($"Updated focusDistance value: {depthOfField.focusDistance.value}");
+                Debug.Log($"Updated aperture value: {depthOfField.aperture.value}");
+            }
+
             WRLD_SKILL_ITEM skillItem = player.playerInventoryManager.currentSkillDataBeingUsed;
             skillItem.runtimeLookingSkillLevel++;
             currentLookingTimeToLevelUp += player.playerInventoryManager.currentSkillDataBeingUsed.increaseLookingToLevelUp; // Increase time required to level up for next level
             StartCoroutine(ShowLevelUpInfo("LOOKING INCREASE TO " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeLookingSkillLevel)));
-            Debug.Log("Looking Skill Leveled up to: " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeLookingSkillLevel));
+            Debug.Log("Looking Skill Leveled up to: " + (player.playerInventoryManager.currentSkillDataBeingUsed.runtimeLookingSkillLevel));  
         }
         private void LevelUpWalkingSkill()
         {

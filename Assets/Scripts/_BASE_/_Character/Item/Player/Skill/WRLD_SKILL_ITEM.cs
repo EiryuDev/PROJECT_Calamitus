@@ -58,6 +58,8 @@ namespace Nutbusterz.Calamitus
         [Header("LOOKING DATA")]
         public float increaseTimeToLevelUpBreathing = 18f;
         [Header("LOOKING DATA")]
+        public float increasingLookDistance = 1f;
+        public float increasingLookAperture = 5f;
         public float increaseLookingToLevelUp = 15f;
         [Header("WALKING DATA")]
         public float increasingWalkingSpeed = 0.5f;

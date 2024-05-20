@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Nutbusterz.Calamitus
 {
@@ -14,6 +15,8 @@ namespace Nutbusterz.Calamitus
         [HideInInspector] public PlayerStatsManager playerStatsManager; 
         [HideInInspector] public PlayerUIManager playerUIManager;
 
+        [HideInInspector] public Volume globalVolume;
+
         protected override void Awake()
         {
             base.Awake();
@@ -26,7 +29,8 @@ namespace Nutbusterz.Calamitus
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
-            playerUIManager = FindFirstObjectByType<PlayerUIManager>(); 
+            playerUIManager = FindFirstObjectByType<PlayerUIManager>();
+            globalVolume = GameObject.Find("Global Volume").GetComponent<Volume>();
         }
         public void Update()
         {

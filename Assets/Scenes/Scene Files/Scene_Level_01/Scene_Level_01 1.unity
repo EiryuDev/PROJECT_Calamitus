@@ -14,17 +14,17 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 2
-  m_FogDensity: 1
+  m_FogDensity: 0.84
   m_LinearFogStart: 100
   m_LinearFogEnd: 1000.01
-  m_AmbientSkyColor: {r: 0.43527535, g: 0, b: 0.008534888, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.06
-  m_AmbientMode: 3
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 9ca41c5d65c89334581b579697ceb4e4, type: 2}
   m_HaloStrength: 0.5
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0
+  m_ReflectionIntensity: 0.148
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
+  m_IndirectSpecularColor: {r: 0.22399291, g: 0.047744125, b: 0.0205903, a: 0.148}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 3853903cbba36504088c1addd2120bdc,
+  m_LightingDataAsset: {fileID: 112000000, guid: ca4251714e59aea419a492a9c18b8c9a,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 29d9654099121654baca42cc91de81ed,
     type: 2}
@@ -173,7 +173,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.54
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -337,41 +337,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: field of view
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415489802274823633, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4728621916742832390, guid: 10c7da17ce63a24489ab0a5cb97025b5,
         type: 3}
       propertyPath: m_Name
@@ -426,11 +391,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8838242602178668929, guid: 10c7da17ce63a24489ab0a5cb97025b5,
-        type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1508,7 +1468,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: d3b9de8dd7e9b7f43897fbf92afc9df5, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 9e5ba594083fa624d903416f56232049, type: 2}
 --- !u!1001 &5539557033398203321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2690,9 +2650,9 @@ SceneRoots:
   - {fileID: 2076213472216237674}
   - {fileID: 3451988928041544762}
   - {fileID: 6170935722305966260}
-  - {fileID: 2587478039637956294}
   - {fileID: 8309774514378029356}
   - {fileID: 5539557033398203321}
   - {fileID: 4462306298727264695}
   - {fileID: 6325002642331958463}
   - {fileID: 290992269}
+  - {fileID: 2587478039637956294}
