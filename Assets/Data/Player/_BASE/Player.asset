@@ -15,10 +15,10 @@ MonoBehaviour:
   name: Player
   icon: {fileID: 0}
   lore: 
-  baseWalkingSpeed: 25
-  runtimeWalkingSpeed: 25
-  baseJumpForce: 5
-  runtimeJumpForce: 5
+  baseWalkingSpeed: 15
+  runtimeWalkingSpeed: 15
+  baseJumpForce: 2
+  runtimeJumpForce: 2
   baseJumpCooldown: 1
   runtimeJumpCooldown: 1
   gravity: -40
@@ -26,8 +26,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  baseDashForce: 500
-  runtimeDashForce: 500
+  baseDashForce: 10
+  runtimeDashForce: 10
   baseDashDuration: 0.15
   runtimeDashDuration: 0.15
   useDashCameraForward: 1

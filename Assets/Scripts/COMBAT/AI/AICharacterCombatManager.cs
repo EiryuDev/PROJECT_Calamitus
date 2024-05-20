@@ -36,6 +36,8 @@ public class AICharacterCombatManager : CharacterCombatManager
     }
     private void AttemptToShootBullets(Transform target)
     {
+        WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(aiCharacter.audioSource, WRLD_AUDIO_FX_MANAGER.instance.shootingBulletSFX, 0.75f);
+
         // Calculate the direction from the enemy to the player in 3D space
         Vector3 direction3D = (target.position - firePoint.position).normalized;
 
@@ -55,6 +57,8 @@ public class AICharacterCombatManager : CharacterCombatManager
     {
         Debug.Log("Attacking Player");
         PlayerManager player = FindFirstObjectByType<PlayerManager>();
+        StartCoroutine(player.playerCameraManager.ShakeCamera());
+        WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, WRLD_AUDIO_FX_MANAGER.instance.calaminoHitPlayerDamageSFX, 1f);
         player.playerStatsManager.TakeDamage(aiCharacter.aiCharacterInventoryManager.currentAIDataBeingUsed.aiDamage);
     }
 }

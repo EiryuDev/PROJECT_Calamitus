@@ -9,9 +9,15 @@ namespace Nutbusterz.Calamitus
         
         [HideInInspector] public AudioSource audioSource;
 
+        [Header("FLAGS")]
+        public bool audioSourceEnableCondition = false;
+
         [Header("SFX SOUNDS")]
         [Header("SE SOUNDS")]
-        public AudioClip sfx;
+        public AudioClip bulletHitPlayerDamageSFX;
+        public AudioClip calaminoHitPlayerDamageSFX;
+        public AudioClip enemyDamageSFX;
+        public AudioClip shootingBulletSFX;
 
         private void Awake()
         {
@@ -32,22 +38,26 @@ namespace Nutbusterz.Calamitus
         }
         private void Update()
         {
-            // Get the index of the currently active scene
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if(audioSourceEnableCondition)
+            {
+                // Get the index of the currently active scene
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-            // Check if the current scene index is not 0, 1, 2, or 3
-            if (currentSceneIndex != 0 && currentSceneIndex != 1 && currentSceneIndex != 2 && currentSceneIndex != 3)
-            {
-                // Do something specific for scenes with index not equal to 0, 1, 2, or 3
-                audioSource.enabled = true; // Enable the audio source
-                                            // Your additional actions here...
+                // Check if the current scene index is not 0, 1, 2, or 3
+                if (currentSceneIndex != 0)
+                {
+                    // Do something specific for scenes with index not equal to 0, 1, 2, or 3
+                    audioSource.enabled = true; // Enable the audio source
+                                                // Your additional actions here...
+                }
+                else
+                {
+                    // Do something specific for scene index 0, 1, 2, or 3
+                    audioSource.enabled = false; // Disable the audio source
+                                                 // Your additional actions here...
+                }
             }
-            else
-            {
-                // Do something specific for scene index 0, 1, 2, or 3
-                audioSource.enabled = false; // Disable the audio source
-                                             // Your additional actions here...
-            }
+
         }
         public AudioClip ChooseRandomSFXFromArray(AudioClip[] array)
         {

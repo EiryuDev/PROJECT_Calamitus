@@ -29,6 +29,7 @@ namespace Nutbusterz.Calamitus
             else if (collision.gameObject.CompareTag("Enemy"))
             {
                 AICharacterManager aiCharacter = collision.gameObject.GetComponentInParent<AICharacterManager>();
+                WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(aiCharacter.audioSource, WRLD_AUDIO_FX_MANAGER.instance.enemyDamageSFX, 1f);
                 aiCharacter.aiCharacterStatsManager.TakeDamage(player.playerInventoryManager.currentWeaponDataBeingUsed.physicalDamage);
             }
         }
