@@ -27,6 +27,11 @@ namespace Nutbusterz.Calamitus
                 player.playerStatsManager.TakeDamage(currentProjectileItemBeingUsed.projectileDamage);
                 Destroy(gameObject);
             }
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("Default"))
+            {
+                Debug.Log("Hit Ground");
+                Destroy(gameObject);
+            }
         }
     }
 }

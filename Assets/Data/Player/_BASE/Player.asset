@@ -58,4 +58,4 @@ MonoBehaviour:
   jumpingStaminaCost: 5
   slidingStaminaCost: 10
   dashingStaminaCost: 20
-  wallRunStaminaCost: 1
+  wallRunStaminaCost: 0.1

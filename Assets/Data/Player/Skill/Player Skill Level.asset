@@ -18,7 +18,7 @@ MonoBehaviour:
   baseBreathingSkillLevel: 1
   runtimeBreathingSkillLevel: 1
   baseLookingSkillLevel: 1
-  runtimeLookingSkillLevel: 1
+  runtimeLookingSkillLevel: 2
   baseWalkingSkillLevel: 1
   runtimeWalkingSkillLevel: 1
   baseJumpingSkillLevel: 1
@@ -40,8 +40,8 @@ MonoBehaviour:
   basePunchingSpeedSkillLevel: 1
   runtimePunchingSpeedSkillLevel: 1
   increaseTimeToLevelUpBreathing: 18
-  increasingLookDistance: 1
-  increasingLookAperture: 5
-  increaseLookingToLevelUp: 12
+  increasingLookDistance: 0.5
+  increasingLookAperture: 2
+  increaseLookingToLevelUp: 17
   increasingWalkingSpeed: 0.5
   increaseWalkingToLevelUp: 200
