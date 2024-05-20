@@ -49,10 +49,14 @@ namespace Nutbusterz.Calamitus
 
             // BELOW CODE: Grounded movement
             UseGroundedMovement();
-            // BELOW CODE: Jumping movement
-            UseJumpingMovement();
-            // BELOW CODE: Sliding movement
-            UseSlidingMovement();
+
+            if (player.playerStatsManager.currentStamina >= 0f)
+            {
+                // BELOW CODE: Jumping movement
+                UseJumpingMovement();
+                // BELOW CODE: Sliding movement
+                UseSlidingMovement();
+            }
         }
         private void GetMovementValues()
         {
@@ -96,6 +100,8 @@ namespace Nutbusterz.Calamitus
         {
             if (player.canJump)
             {
+                player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.jumpingStaminaCost);
+
                 // Get the player's forward movement direction
                 Vector3 moveDirection = CalculateMoveDirection();
 
@@ -155,6 +161,8 @@ namespace Nutbusterz.Calamitus
         }
         public void AttemptToUseDash()
         {
+            player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.dashingStaminaCost);
+
             // Get the player's movement direction
             Vector3 dashDirection = CalculateMoveDirection();
 
@@ -251,7 +259,6 @@ namespace Nutbusterz.Calamitus
 
         private IEnumerator ShowLevelUpInfo(string info)
         {
-            Debug.Log("tEST");
             player.playerUIManager.levelUpInfo.SetActive(true);
             player.playerUIManager.levelUpInfo.GetComponent<TextMeshProUGUI>().text = info;
             yield return null;

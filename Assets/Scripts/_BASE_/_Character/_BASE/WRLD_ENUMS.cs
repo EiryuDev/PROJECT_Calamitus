@@ -6,10 +6,12 @@ public class WRLD_ENUMS : MonoBehaviour
 }
 public enum AITypes
 {
-    Floating
+    Floating,
+    Grounded
 }
 public enum AIState
 {
     Attack,
+    Chase,
     Patrol
 }

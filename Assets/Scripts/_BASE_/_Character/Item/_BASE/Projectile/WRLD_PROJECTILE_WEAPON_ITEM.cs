@@ -7,6 +7,7 @@ namespace Nutbusterz.Calamitus
     {
         [Header("PROJECTILE DATA")]
         public float projectileSpeed = 30f;
+        public int projectileDamage = 8;
         public float destroyAfterTime = 3f;
     }
 }

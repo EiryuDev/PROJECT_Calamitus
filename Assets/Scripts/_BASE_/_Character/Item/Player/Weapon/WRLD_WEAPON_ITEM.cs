@@ -28,9 +28,9 @@ namespace Nutbusterz.Calamitus
         [Tooltip("Bonus damage modifier for the weapon")]
         public float bonus_Damage_Modifier = 1.1f;
 
-        //[Header("WEAPON DATA")]
-        //[Tooltip("Speed value for the weapon")]
-        //public float weaponSpeed = 5f;
+        [Header("STAMINA DATA")]
+        [Tooltip("Base stamina cost for the weapon")]
+        public float baseStaminaCost = 5f;
 
         [Header("ATTACK ANIMATION DATA")]
         [Tooltip("For the left hand attack animation")]

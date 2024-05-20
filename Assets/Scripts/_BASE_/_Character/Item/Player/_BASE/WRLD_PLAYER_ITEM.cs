@@ -72,6 +72,12 @@ namespace Nutbusterz.Calamitus
         public float baseSlideHeight = 0.5f;
         [HideInInspector] public float runtimeSlideHeight = 0.5f;
 
+        [Header("STATS DATA")]
+        public float movementStaminaCost = 1f;
+        public float jumpingStaminaCost = 5f;
+        public float slidingStaminaCost = 10f;
+        public float dashingStaminaCost = 20f;
+        public float wallRunStaminaCost = 2f;
 
         private void OnEnable()
         {

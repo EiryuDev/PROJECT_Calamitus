@@ -19,6 +19,11 @@ namespace Nutbusterz.Calamitus
                 Debug.Log("Hit Enemy");
                 Destroy(gameObject);
             }
+            else if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
+                player.playerStatsManager.TakeDamage(currentProjectileItemBeingUsed.projectileDamage);
+            }
         }
     }
 }

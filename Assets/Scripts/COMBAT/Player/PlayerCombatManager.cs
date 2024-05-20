@@ -9,6 +9,8 @@ namespace Nutbusterz.Calamitus
         [Header("REFERENCES")]
         public Transform orientation;
         public Transform playerCam;
+        public GameObject leftHandHitbox;
+        public GameObject rightHandHitbox;
         protected override void Awake()
         {
             base.Awake();
@@ -16,24 +18,27 @@ namespace Nutbusterz.Calamitus
         }
         public void AttemptToWallRun()
         {
-            RaycastHit hit;
-            if (!player.isWallRunning && !player.isGrounded && DetectWallRunCollision(out hit))
+            if(player.playerStatsManager.currentStamina >= 0f)
             {
-                player.playerLocomotionManager.wallNormal = hit.normal;
-                StartWallRun();
-            }
-            else if (player.isWallRunning && (player.isGrounded || !DetectWallRunCollision(out hit)))
-            {
-                ResetWallRun();
-            }
-            
-            UseWallRunning();
+                RaycastHit hit;
+                if (!player.isWallRunning && !player.isGrounded && DetectWallRunCollision(out hit))
+                {
+                    player.playerLocomotionManager.wallNormal = hit.normal;
+                    StartWallRun();
+                }
+                else if (player.isWallRunning && (player.isGrounded || !DetectWallRunCollision(out hit)))
+                {
+                    ResetWallRun();
+                }
 
-            // Handle jump input while wall running
-            if (player.isWallRunning && player.playerInputManager.jump_Input && !player.playerInputManager.jumpInputHandled)
-            {
-                player.playerLocomotionManager.AttemptToPerformJump();
-                player.playerInputManager.jumpInputHandled = true;
+                UseWallRunning();
+
+                // Handle jump input while wall running
+                if (player.isWallRunning && player.playerInputManager.jump_Input && !player.playerInputManager.jumpInputHandled)
+                {
+                    player.playerLocomotionManager.AttemptToPerformJump();
+                    player.playerInputManager.jumpInputHandled = true;
+                }
             }
         }
 
@@ -57,6 +62,7 @@ namespace Nutbusterz.Calamitus
         {
             player.isWallRunning = true;
             player.playerLocomotionManager.wallRunTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeWallRunMaxTime;
+            player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.wallRunStaminaCost);
         }
         public void ResetWallRun()
         {
@@ -80,6 +86,7 @@ namespace Nutbusterz.Calamitus
         public void AttemptToUseSliding()
         {
             player.isSliding = true;
+            player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.slidingStaminaCost);
             player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideDuration;
             player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideHeight;
         }
@@ -91,17 +98,27 @@ namespace Nutbusterz.Calamitus
 
         public void AttemptToUseLeftAttack()
         {
-            player.playerLocomotionManager.stationaryTime = 0f;
-            WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
-            player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
-            player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.leftAttackAnimation, false, false, true);
+            if(player.playerStatsManager.currentStamina >= 0f)
+            {
+                player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentWeaponDataBeingUsed.baseStaminaCost);
+                leftHandHitbox.SetActive(true);
+                player.playerLocomotionManager.stationaryTime = 0f;
+                WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
+                player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
+                player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.leftAttackAnimation, false, false, true);
+            }
         }
         public void AttemptToUseRightAttack()
         {
-            player.playerLocomotionManager.stationaryTime = 0f;
-            WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
-            player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
-            player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.rightAttackAnimation, false, false, true);
+            if(player.playerStatsManager.currentStamina >= 0f)
+            {
+                player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentWeaponDataBeingUsed.baseStaminaCost);
+                rightHandHitbox.SetActive(true);
+                player.playerLocomotionManager.stationaryTime = 0f;
+                WRLD_AUDIO_FX_MANAGER.instance.PlaySoundFixedPitchFX(player.audioSource, player.playerInventoryManager.currentWeaponDataBeingUsed.whooshes[0], 1f, 0.5f);
+                player.playerUIManager.crosshairObject.GetComponent<Animator>().CrossFade("Crosshair Anim", 0.2f);
+                player.playerAnimatorManager.PlayTargetActionAnimation(player.playerInventoryManager.currentWeaponDataBeingUsed.rightAttackAnimation, false, false, true);
+            }
         }
 
         //public void AttemptToUseDashing()

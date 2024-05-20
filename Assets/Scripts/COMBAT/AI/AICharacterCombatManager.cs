@@ -6,7 +6,6 @@ public class AICharacterCombatManager : CharacterCombatManager
     [HideInInspector] public AICharacterManager aiCharacter;
 
     [Header("ATTACK DATA")]
-    public GameObject bulletPrefab; // 2D bullet prefab
     public Transform firePoint; // Point from where the bullet will be fired
     private float nextFireTime = 0f;
     protected override void Awake()
@@ -30,6 +29,9 @@ public class AICharacterCombatManager : CharacterCombatManager
             case AITypes.Floating:
                 AttemptToShootBullets(target);
                 break;
+            case AITypes.Grounded:
+                AttemptToHitPlayer(target);
+                break;
         }
     }
     private void AttemptToShootBullets(Transform target)
@@ -41,11 +43,16 @@ public class AICharacterCombatManager : CharacterCombatManager
         Vector3 direction2D = new Vector3(direction3D.x, direction3D.y, direction3D.z);
 
         // Spawn the bullet
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(aiCharacter.aiCharacterInventoryManager.currentAIDataBeingUsed.weaponModel, firePoint.position, Quaternion.identity);
 
         // Apply the calculated direction and force to the bullet
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         WRLD_PROJECTILE_MANAGER projectile = bullet.GetComponent<WRLD_PROJECTILE_MANAGER>();
         rb.linearVelocity = direction2D * projectile.currentProjectileItemBeingUsed.projectileSpeed;
+    }
+
+    private void AttemptToHitPlayer(Transform target)
+    {
+
     }
 }

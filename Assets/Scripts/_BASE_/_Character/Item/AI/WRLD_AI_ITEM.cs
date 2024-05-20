@@ -9,15 +9,21 @@ namespace Nutbusterz.Calamitus
         [Tooltip("What type of AI is this")]
         public AITypes aiTypes;
 
+        [Header("WEAPON MODEL")]
+        [Tooltip("What type of weapon AI is using")]
+        public GameObject weaponModel;
+
         [Header("MOVEMENT DATA")]
         [Tooltip("How much is the movement speed")]
         public float movementSpeed = 5.0f; 
         [Tooltip("How much is the ai height offset or amplitude")]
         public float aiHeight = 1.0f;
-        [Tooltip("How much is the ai follow gap")]
-        public float aiFollowGap = 2.0f;
+        [Tooltip("How much is the ai stopping distance")]
+        public float aiStoppingDistance = 2.0f;
 
         [Header("COMBAT DATA")]
+        [Tooltip("How much is the range for ai detection")]
+        public float aiDetectionRange = 5f;
         [Tooltip("How much is the range for ai attack")]
         public float aiAttackRange = 5f;
         [Tooltip("How much time for ai attack")]

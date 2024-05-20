@@ -11,6 +11,7 @@ namespace Nutbusterz.Calamitus
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerCombatManager playerCombatManager;
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+        [HideInInspector] public PlayerStatsManager playerStatsManager; 
         [HideInInspector] public PlayerUIManager playerUIManager;
 
         protected override void Awake()
@@ -24,6 +25,7 @@ namespace Nutbusterz.Calamitus
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
+            playerStatsManager = GetComponent<PlayerStatsManager>();
             playerUIManager = FindFirstObjectByType<PlayerUIManager>(); 
         }
         public void Update()
@@ -34,6 +36,7 @@ namespace Nutbusterz.Calamitus
             playerLocomotionManager.UseAllMovement();
             playerCameraManager.UseAllCameraMovement();
             playerCombatManager.AttemptToWallRun();
+            playerStatsManager.RegenStamina();
         }
     }
 }

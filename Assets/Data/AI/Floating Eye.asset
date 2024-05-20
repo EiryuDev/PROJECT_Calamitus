@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Floating Eye
   m_EditorClassIdentifier: 
   name: Floating Eye
-  icon: {fileID: 0}
+  icon: {fileID: 5434306554804119053, guid: db90aa9761223d94891935aa5f7c904e, type: 3}
   lore: 
   aiTypes: 0
+  weaponModel: {fileID: 7881433726592687371, guid: c20d8e7f7b6050d4e9a58535be623f21,
+    type: 3}
   movementSpeed: 5
   aiHeight: 2
-  aiFollowGap: 0
+  aiStoppingDistance: 2
+  aiDetectionRange: 20
   aiAttackRange: 20
-  aiAttackTime: 1
+  aiAttackTime: 1.25
