@@ -49,14 +49,10 @@ namespace Nutbusterz.Calamitus
 
             // BELOW CODE: Grounded movement
             UseGroundedMovement();
-
-            if (player.playerStatsManager.currentStamina >= 0f)
-            {
-                // BELOW CODE: Jumping movement
-                UseJumpingMovement();
-                // BELOW CODE: Sliding movement
-                UseSlidingMovement();
-            }
+            // BELOW CODE: Jumping movement
+            UseJumpingMovement();
+            // BELOW CODE: Sliding movement
+            UseSlidingMovement();
         }
         private void GetMovementValues()
         {
@@ -98,7 +94,7 @@ namespace Nutbusterz.Calamitus
         }
         public void AttemptToPerformJump()
         {
-            if (player.canJump)
+            if (player.canJump && player.playerStatsManager.currentStamina >= 0f)
             {
                 player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.jumpingStaminaCost);
 

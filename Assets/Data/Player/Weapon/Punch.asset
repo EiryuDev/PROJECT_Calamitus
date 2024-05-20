@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Punch
   icon: {fileID: 0}
   lore: 
-  physicalDamage: 25
+  physicalDamage: 5
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0

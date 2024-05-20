@@ -9,6 +9,7 @@ namespace Project.Scripts.Fractures
     {
         public static ChunkGraphManager FractureGameObject(GameObject gameObject, Anchor anchor, int seed, int totalChunks,Material insideMaterial, Material outsideMaterial, float jointBreakForce, float density)
         {
+
             // Translate all meshes to one world mesh
             var mesh = GetWorldMesh(gameObject);
             

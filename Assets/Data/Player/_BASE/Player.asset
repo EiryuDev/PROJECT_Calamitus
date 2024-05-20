@@ -52,10 +52,10 @@ MonoBehaviour:
   runtimeSlideDuration: 1
   baseSlideHeight: 0.5
   runtimeSlideHeight: 0.5
-  basePunchingForce: 10
-  runtimePunchingForce: 10
+  basePunchingForce: 100
+  runtimePunchingForce: 100
   movementStaminaCost: 1
   jumpingStaminaCost: 5
   slidingStaminaCost: 10
   dashingStaminaCost: 20
-  wallRunStaminaCost: 5
+  wallRunStaminaCost: 1

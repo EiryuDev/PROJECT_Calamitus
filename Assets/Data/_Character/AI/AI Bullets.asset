@@ -15,6 +15,6 @@ MonoBehaviour:
   name: 
   icon: {fileID: 0}
   lore: 
-  projectileSpeed: 10
+  projectileSpeed: 20
   projectileDamage: 8
   destroyAfterTime: 3

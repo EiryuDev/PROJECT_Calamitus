@@ -85,10 +85,13 @@ namespace Nutbusterz.Calamitus
         }
         public void AttemptToUseSliding()
         {
-            player.isSliding = true;
-            player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.slidingStaminaCost);
-            player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideDuration;
-            player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideHeight;
+            if(player.playerStatsManager.currentStamina >= 0f)
+            {
+                player.isSliding = true;
+                player.playerStatsManager.DeductStamina(player.playerInventoryManager.currentPlayerDataBeingUsed.slidingStaminaCost);
+                player.playerLocomotionManager.slideTimer = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideDuration;
+                player.playerController.height = player.playerInventoryManager.currentPlayerDataBeingUsed.runtimeSlideHeight;
+            }
         }
         public void ResetSliding()
         {
