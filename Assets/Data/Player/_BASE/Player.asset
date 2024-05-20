@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   lore: 
   baseWalkingSpeed: 25
-  runtimeWalkingSpeed: 26
+  runtimeWalkingSpeed: 26.5
   baseJumpForce: 5
   runtimeJumpForce: 5
   baseJumpCooldown: 1
@@ -56,4 +56,4 @@ MonoBehaviour:
   jumpingStaminaCost: 5
   slidingStaminaCost: 10
   dashingStaminaCost: 20
-  wallRunStaminaCost: 10
+  wallRunStaminaCost: 5
