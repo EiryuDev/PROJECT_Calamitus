@@ -2319,6 +2319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floaty Eye
       objectReference: {fileID: 0}
+    - target: {fileID: 1521085628539975427, guid: 48a22fe79f4f014428d7c6ba2040b250,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1898567452196793309, guid: 48a22fe79f4f014428d7c6ba2040b250,
         type: 3}
       propertyPath: m_AnchorMax.x

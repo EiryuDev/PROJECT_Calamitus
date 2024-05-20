@@ -128,10 +128,16 @@ namespace Nutbusterz.Calamitus
             bullet.transform.position = barrelEnd.position;
             bullet.transform.localScale = Vector3.one * Radius;
 
-            var mat = bullet.GetComponent<Renderer>().material;
-            mat.color = Color.red;
-            mat.EnableKeyword("_EMISSION");
-            mat.SetColor("_EmissionColor", Color.white);
+            var mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            mat.color = new Color(1, 1, 1, 0); // Fully transparent (alpha = 0)
+            mat.SetFloat("_Surface", 1); // 1 means transparent
+            mat.SetFloat("_Blend", 0); // Alpha blending
+            mat.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            mat.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            mat.SetFloat("_ZWrite", 0);
+            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+
+            bullet.GetComponent<Renderer>().material = mat;
 
             var rb = bullet.AddComponent<Rigidbody>();
             rb.linearVelocity = transform.forward * Velocity;
