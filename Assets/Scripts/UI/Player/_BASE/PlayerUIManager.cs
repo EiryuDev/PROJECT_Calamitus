@@ -17,6 +17,7 @@ namespace Nutbusterz.Calamitus
 
         [Header("FLAGS")]
         public bool isPaused = false;
+        private bool isActive = true;
 
         [Header("SKILL DATA")]
         public TextMeshProUGUI levelSkillLevel;
@@ -72,6 +73,17 @@ namespace Nutbusterz.Calamitus
 
                 // Toggle the isPaused variable
                 isPaused = !isPaused;
+            }
+        }
+
+        public void AttemptToShowHUD()
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                isActive = !isActive;
+                healthBar.gameObject.SetActive(isActive);
+                staminaBar.gameObject.SetActive(isActive);
+                crosshairObject.SetActive(isActive);
             }
         }
     }

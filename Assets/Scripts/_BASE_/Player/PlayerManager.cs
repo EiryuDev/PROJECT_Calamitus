@@ -43,6 +43,7 @@ namespace Nutbusterz.Calamitus
             playerStatsManager.RegenStamina();
             playerUIManager.UseTheSkillStats();
             playerUIManager.AttemptToUseSkillMenu();
+            playerUIManager.AttemptToShowHUD();
         }
     }
 }
